@@ -1,4 +1,4 @@
-<gb-product product="{ product }">
+<gb-product if="{ product }" product="{ product }">
   <span>
     <gb-link url="{ $product.link() }">
       <img riot-src="{ $product.data.image }" alt="" />

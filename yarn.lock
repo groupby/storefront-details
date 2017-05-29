@@ -36,8 +36,8 @@
     github-url-from-git "^1.4.0"
 
 "@storefront/core@dev":
-  version "0.0.23-development"
-  resolved "https://registry.yarnpkg.com/@storefront/core/-/core-0.0.23-development.tgz#417ed826561994c7ce1cc91442b32eb2e05d0396"
+  version "0.0.24-development"
+  resolved "https://registry.yarnpkg.com/@storefront/core/-/core-0.0.24-development.tgz#acaf82ad4db833ddbb0b93854b08383c02e9adbe"
   dependencies:
     "@storefront/flux-capacitor" dev
     "@types/deep-assign" "^0.1.0"
@@ -58,8 +58,8 @@
     urijs "^1.18.10"
 
 "@storefront/flux-capacitor@dev":
-  version "0.0.18-development"
-  resolved "https://registry.yarnpkg.com/@storefront/flux-capacitor/-/flux-capacitor-0.0.18-development.tgz#77389389769cb17254770817f9c5dca55e275d88"
+  version "0.0.19-development"
+  resolved "https://registry.yarnpkg.com/@storefront/flux-capacitor/-/flux-capacitor-0.0.19-development.tgz#bc1fb3aeb83825ff78cb698dfb5ab480d68f941c"
   dependencies:
     "@types/redux-logger" "^3.0.0"
     "@types/uuid" "^2.0.29"
@@ -4267,7 +4267,7 @@ strip-json-comments@^2.0.0, strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-supports-color@3.1.2:
+supports-color@3.1.2, supports-color@^3.1.0, supports-color@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.1.2.tgz#72a262894d9d408b956ca05ff37b2ed8a6e2a2d5"
   dependencies:
@@ -4276,12 +4276,6 @@ supports-color@3.1.2:
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
-
-supports-color@^3.1.0, supports-color@^3.1.2:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.2.3.tgz#65ac0504b3954171d8a64946b2ae3cbb8a5f54f6"
-  dependencies:
-    has-flag "^1.0.0"
 
 symbol-observable@^1.0.2:
   version "1.0.4"
