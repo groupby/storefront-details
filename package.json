@@ -1,6 +1,6 @@
 {
   "name": "@storefront/details",
-  "version": "0.0.0-development",
+  "version": "0.0.1-development",
   "description": "StoreFront details component",
   "keywords": [
     "storefront",
