@@ -36,9 +36,10 @@
     github-url-from-git "^1.4.0"
 
 "@storefront/core@dev":
-  version "0.0.24-development"
-  resolved "https://registry.yarnpkg.com/@storefront/core/-/core-0.0.24-development.tgz#acaf82ad4db833ddbb0b93854b08383c02e9adbe"
+  version "0.0.26-development"
+  resolved "https://registry.yarnpkg.com/@storefront/core/-/core-0.0.26-development.tgz#ecfaab47a4b66e359c86d74e29b3c2133d9c4d84"
   dependencies:
+    "@storefront/core" dev
     "@storefront/flux-capacitor" dev
     "@types/deep-assign" "^0.1.0"
     "@types/js-cookie" "^2.0.28"
@@ -58,13 +59,13 @@
     urijs "^1.18.10"
 
 "@storefront/flux-capacitor@dev":
-  version "0.0.19-development"
-  resolved "https://registry.yarnpkg.com/@storefront/flux-capacitor/-/flux-capacitor-0.0.19-development.tgz#bc1fb3aeb83825ff78cb698dfb5ab480d68f941c"
+  version "0.0.21-development"
+  resolved "https://registry.yarnpkg.com/@storefront/flux-capacitor/-/flux-capacitor-0.0.21-development.tgz#34dc18c9f83c55b8000c245492e68add2f36e146"
   dependencies:
     "@types/redux-logger" "^3.0.0"
     "@types/uuid" "^2.0.29"
     eventemitter3 "^2.0.3"
-    groupby-api beta
+    groupby-api dev
     lodash.range "^3.2.0"
     redux "^3.6.0"
     redux-logger "^3.0.6"
@@ -175,8 +176,8 @@ acorn@^5.0.0, acorn@^5.0.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.0.3.tgz#c460df08491463f028ccb82eab3730bf01087b3d"
 
 agent-base@2:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-2.1.0.tgz#193455e4347bca6b05847cb81e939bb325446da8"
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-2.1.1.tgz#d6de10d5af6132d5bd692427d46fc538539094c7"
   dependencies:
     extend "~3.0.0"
     semver "~5.0.1"
@@ -1028,8 +1029,8 @@ camelcase@^3.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
 caniuse-lite@^1.0.30000670:
-  version "1.0.30000674"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000674.tgz#3eabc5e40ae2dce6375dd292f116b9e25bd505a7"
+  version "1.0.30000676"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000676.tgz#1e962123f48073f0c51c4ea0651dd64d25786498"
 
 caseless@~0.11.0:
   version "0.11.0"
@@ -2088,9 +2089,9 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.5, graceful-fs@^4.1.6:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-groupby-api@beta:
-  version "2.0.0-RC1.3"
-  resolved "https://registry.yarnpkg.com/groupby-api/-/groupby-api-2.0.0-RC1.3.tgz#dc1ab86b2432254d78f1b7f796d33179c6924ba2"
+groupby-api@dev:
+  version "0.0.2-development"
+  resolved "https://registry.yarnpkg.com/groupby-api/-/groupby-api-0.0.2-development.tgz#6312d1ef8a8249cb80ecfc1824283a188ed65fc7"
   dependencies:
     "@types/axios" "^0.9.35"
     "@types/clone" "^0.1.30"
@@ -2341,8 +2342,8 @@ is-date-object@^1.0.1:
   resolved "https://registry.yarnpkg.com/is-date-object/-/is-date-object-1.0.1.tgz#9aa20eb6aeebbff77fbd33e74ca01b33581d3a16"
 
 is-dotfile@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.2.tgz#2c132383f39199f8edc268ca01b9b007d205cc4d"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.3.tgz#a6a2f32ffd2dfb04f5ca25ecd0f6b83cf798a1e1"
 
 is-equal-shallow@^0.1.3:
   version "0.1.3"
@@ -3024,8 +3025,8 @@ node-libs-browser@^2.0.0:
     vm-browserify "0.0.4"
 
 node-pre-gyp@^0.6.29:
-  version "0.6.34"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.34.tgz#94ad1c798a11d7fc67381b50d47f8cc18d9799f7"
+  version "0.6.36"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.36.tgz#db604112cb74e0d477554e9b505b17abddfab786"
   dependencies:
     mkdirp "^0.5.1"
     nopt "^4.0.1"
@@ -4418,8 +4419,8 @@ tslint@^5.2.0:
     tsutils "^2.0.0"
 
 tsutils@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.2.0.tgz#218614657f21c677e4536b4ba75daf8ebce1b367"
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.3.0.tgz#96e661d7c2363f31adc8992ac67bbe7b7fc175e5"
 
 tty-browserify@0.0.0:
   version "0.0.0"
@@ -4466,8 +4467,8 @@ typescript-compiler@^1.4.1-2:
   resolved "https://registry.yarnpkg.com/typescript-compiler/-/typescript-compiler-1.4.1.tgz#3639a276d7f3bc97ddbe121fd933713d475a9aa8"
 
 typescript@^2.3.2, typescript@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.3.3.tgz#9639f3c3b40148e8ca97fe08a51dd1891bb6be22"
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.3.4.tgz#3d38321828231e434f287514959c37a82b629f42"
 
 uglify-js@^2.6, uglify-js@^2.8.27:
   version "2.8.27"
