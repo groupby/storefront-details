@@ -1,15 +1,23 @@
-import { Events } from '@storefront/core';
+import { Events, ProductTransformer } from '@storefront/core';
 import Details from '../../src/details';
 import suite from './_suite';
 
-suite('Details', ({ expect, spy }) => {
+const STRUCTURE = { a: 'b' };
+
+suite('Details', ({ expect, spy, stub }) => {
   let details: Details;
 
   beforeEach(() => {
-    Details.prototype.config = <any>{};
+    Details.prototype.config = <any>{ structure: STRUCTURE };
     details = new Details();
   });
   afterEach(() => delete Details.prototype.config);
+
+  describe('constructor()', () => {
+    it('should set initial values', () => {
+      expect(details.structure).to.eq(STRUCTURE);
+    });
+  });
 
   describe('init()', () => {
     it('should listen for DETAILS_PRODUCT_UPDATED', () => {
@@ -23,6 +31,16 @@ suite('Details', ({ expect, spy }) => {
   });
 
   describe('updateProduct()', () => {
-    it('should update product');
+    it('should update product', () => {
+      const product: any = { a: 'b' };
+      const transformed = { c: 'd' };
+      const update = details.update = spy();
+      const transform = stub(ProductTransformer, 'transform').returns(transformed);
+
+      details.updateProduct(product);
+
+      expect(update).to.be.calledWith({ product: transformed });
+      expect(transform).to.be.calledWith(product, STRUCTURE);
+    });
   });
 });
