@@ -10,8 +10,9 @@ class Details {
     this.flux.on(Events.DETAILS_PRODUCT_UPDATED, this.updateProduct);
   }
 
-  updateProduct = (product: Store.Product) =>
-    this.update({ product: ProductTransformer.transform(product, this.structure) })
+  updateProduct = (product: Store.Product) => {
+    return this.update({ product: ProductTransformer.transform(product, this.structure) });
+  }
 }
 
 interface Details extends Tag { }
