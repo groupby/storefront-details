@@ -11,7 +11,6 @@ class Details {
   }
 
   updateProduct = (product: Store.Product) => {
-    console.log('what am i doing??', product);
     return this.update({ product: ProductTransformer.transform(product, this.structure) });
   }
 }
