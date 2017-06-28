@@ -42,5 +42,15 @@ suite('Details', ({ expect, spy, stub }) => {
       expect(update).to.be.calledWith({ product: transformed });
       expect(transform).to.be.calledWith(product, STRUCTURE);
     });
+
+    it('should update product to be empty', () => {
+      const transformed = { c: 'd' };
+      const update = details.update = spy();
+      stub(ProductTransformer, 'transform', () => expect.fail());
+
+      details.updateProduct(undefined);
+
+      expect(update).to.be.calledWith({ product: { data: {}, variants: [{}] } });
+    });
   });
 });
