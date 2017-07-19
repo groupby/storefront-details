@@ -14,7 +14,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
   afterEach(() => delete Details.prototype.config);
 
   itShouldBeConfigurable(Details);
-  itShouldHaveAlias(Details, 'alias');
+  itShouldHaveAlias(Details, 'details');
 
   describe('constructor()', () => {
     it('should set initial values', () => {
