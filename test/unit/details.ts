@@ -4,7 +4,7 @@ import suite from './_suite';
 
 const STRUCTURE = { a: 'b' };
 
-suite('Details', ({ expect, spy, stub, configurable, aliased }) => {
+suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias }) => {
   let details: Details;
 
   beforeEach(() => {
@@ -13,8 +13,8 @@ suite('Details', ({ expect, spy, stub, configurable, aliased }) => {
   });
   afterEach(() => delete Details.prototype.config);
 
-  configurable(Details);
-  aliased(Details);
+  itShouldBeConfigurable(Details);
+  itShouldHaveAlias(Details, 'alias');
 
   describe('constructor()', () => {
     it('should set initial values', () => {
