@@ -30,7 +30,6 @@ export default suite<Utils, any>((tests) => {
     itShouldHaveAlias: (clazz, expectedValue) => {
       describe('alias', () => {
         it('should set alias', () => {
-          // tslint:disable-next-line max-line-length
           expect(clazz[Symbol.for('tag_description')].metadata.alias).to.eq(expectedValue);
         });
       });
