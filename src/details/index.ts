@@ -1,7 +1,7 @@
 import { alias, configurable, tag, Events, ProductTransformer, Store, Structure, Tag } from '@storefront/core';
 
 @configurable
-@alias('breadcrumbs')
+@alias('details')
 @tag('gb-details', require('./index.html'))
 class Details {
 
