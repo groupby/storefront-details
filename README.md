@@ -1,6 +1,6 @@
 # StoreFront details
 
-StoreFront <gb-details> component
+StoreFront `<gb-details>` component
 
 [![npm (scoped with tag)](https://img.shields.io/npm/v/@storefront/details.svg?style=flat-square)](https://www.npmjs.com/package/@storefront/details)
 [![CircleCI branch](https://img.shields.io/circleci/project/github/groupby/storefront-details/master.svg?style=flat-square)](https://circleci.com/gh/groupby/storefront-details/tree/master)
