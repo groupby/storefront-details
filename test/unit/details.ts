@@ -49,7 +49,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
     it('should update product to be empty', () => {
       const transformed = { c: 'd' };
       const update = details.update = spy();
-      stub(ProductTransformer, 'transform', () => expect.fail());
+      stub(ProductTransformer, 'transform').callsFake(() => expect.fail());
 
       details.updateProduct(undefined);
 
