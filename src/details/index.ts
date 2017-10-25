@@ -1,4 +1,5 @@
-import { alias, configurable, tag, Events, ProductTransformer, Store, Structure, Tag } from '@storefront/core';
+import { alias, configurable, tag, Events,
+         ProductTransformer, Selectors, Store, Structure, Tag } from '@storefront/core';
 
 @configurable
 @alias('details')
@@ -9,6 +10,10 @@ class Details {
   product: Store.Product;
 
   init() {
+    const details = this.select(Selectors.details);
+    if (details && details.product) {
+      this.updateProduct(details.product);
+    }
     this.flux.on(Events.DETAILS_PRODUCT_UPDATED, this.updateProduct);
   }
 
