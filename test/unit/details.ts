@@ -35,10 +35,10 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
 
     it('should call details selector and call updateProduct with details.product', () => {
       const on = spy();
-      details.flux = <any>{ on };
       const product = { a: 1 };
-      details.select = spy(() => ({ product }));
       const updateProduct = stub(details, 'updateProduct');
+      details.flux = <any>{ on };
+      details.select = spy(() => ({ product }));
 
       details.init();
 
