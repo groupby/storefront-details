@@ -11,13 +11,13 @@ class Details {
 
   init() {
     const details = this.select(Selectors.details);
-    if (details && details.product) {
-      this.updateProduct(details.product);
+    if (details && details.data) {
+      this.product = <any>ProductTransformer.transform(details.data, this.structure);
     }
-    this.flux.on(Events.DETAILS_PRODUCT_UPDATED, this.updateProduct);
+    this.flux.on(Events.DETAILS_UPDATED, this.updateDetails);
   }
 
-  updateProduct = (product: Store.Product) => {
+  updateDetails = (product: Store.Product) => {
     if (product) {
       this.update({ product: ProductTransformer.transform(product, this.structure) });
     } else {
