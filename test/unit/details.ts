@@ -30,30 +30,30 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
 
       details.init();
 
-      expect(on.calledWith(Events.DETAILS_PRODUCT_UPDATED, details.updateProduct));
+      expect(on.calledWith(Events.DETAILS_PRODUCT_UPDATED, details.updateDetails));
     });
 
-    it('should call details selector and call updateProduct with details.product', () => {
+    it('should call details selector and call updateDetails with details.product', () => {
       const on = spy();
       const product = { a: 1 };
-      const updateProduct = stub(details, 'updateProduct');
+      const updateDetails = stub(details, 'updateDetails');
       details.flux = <any>{ on };
       details.select = spy(() => ({ product }));
 
       details.init();
 
-      expect(updateProduct).to.be.calledWithExactly(product);
+      expect(updateDetails).to.be.calledWithExactly(product);
     });
   });
 
-  describe('updateProduct()', () => {
+  describe('updateDetails()', () => {
     it('should update product', () => {
       const product: any = { a: 'b' };
       const transformed = { c: 'd' };
       const update = details.update = spy();
       const transform = stub(ProductTransformer, 'transform').returns(transformed);
 
-      details.updateProduct(product);
+      details.updateDetails(product);
 
       expect(update).to.be.calledWith({ product: transformed });
       expect(transform).to.be.calledWith(product, STRUCTURE);
@@ -64,7 +64,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
       const update = details.update = spy();
       stub(ProductTransformer, 'transform').callsFake(() => expect.fail());
 
-      details.updateProduct(undefined);
+      details.updateDetails(undefined);
 
       expect(update).to.be.calledWith({ product: { data: {}, variants: [{}] } });
     });
