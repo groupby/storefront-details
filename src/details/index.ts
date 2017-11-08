@@ -12,7 +12,7 @@ class Details {
   init() {
     const details = this.select(Selectors.details);
     if (details && details.data) {
-      this.product = <any>ProductTransformer.transform(details.data, this.structure);
+      this.updateDetails(details.data);
     }
     this.flux.on(Events.DETAILS_UPDATED, this.updateDetails);
   }
