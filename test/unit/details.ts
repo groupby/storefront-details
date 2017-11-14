@@ -2,13 +2,10 @@ import { CoreSelectors, Events, ProductTransformer } from '@storefront/core';
 import Details from '../../src/details';
 import suite from './_suite';
 
-const STRUCTURE = { a: 'b' };
-
 suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias }) => {
   let details: Details;
 
   beforeEach(() => {
-    Details.prototype.config = <any>{ structure: STRUCTURE };
     details = new Details();
   });
   afterEach(() => delete Details.prototype.config);
