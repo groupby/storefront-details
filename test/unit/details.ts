@@ -35,7 +35,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
       const product = { a: 1 };
       const updateProduct = stub(details, 'updateProduct');
       const transformedDetailsProduct = stub(CoreSelectors, 'transformedDetailsProduct').returns(product);
-      const state = { b : 2};
+      const state = { b: 2 };
       details.flux = <any>{ on };
       details.select = spy((f) => (f(state)));
 
@@ -57,9 +57,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
     });
 
     it('should update product to be empty', () => {
-      const transformed = { c: 'd' };
       const update = details.update = spy();
-      stub(ProductTransformer, 'transform').callsFake(() => expect.fail());
 
       details.updateProduct(undefined);
 
