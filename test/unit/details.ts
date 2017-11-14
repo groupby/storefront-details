@@ -1,4 +1,4 @@
-import { Events, ProductTransformer } from '@storefront/core';
+import { CoreSelectors, Events, ProductTransformer } from '@storefront/core';
 import Details from '../../src/details';
 import suite from './_suite';
 
@@ -16,32 +16,32 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
   itShouldBeConfigurable(Details);
   itShouldHaveAlias(Details, 'details');
 
-  describe('constructor()', () => {
-    it('should set initial values', () => {
-      expect(details.structure).to.eq(STRUCTURE);
-    });
-  });
-
   describe('init()', () => {
     it('should listen for DETAILS_PRODUCT_UPDATED', () => {
       const on = spy();
+      const updateProduct = () => 1;
+      stub(CoreSelectors, 'transformedDetailsProduct');
       details.flux = <any>{ on };
       details.select = spy();
+      details.updateProduct = updateProduct;
 
       details.init();
 
       expect(on.calledWith(Events.DETAILS_PRODUCT_UPDATED, details.updateProduct));
     });
 
-    it('should call details selector and call updateProduct with details.product', () => {
+    it('should call transformedDetailsProduct selector and call updateProduct with product', () => {
       const on = spy();
       const product = { a: 1 };
       const updateProduct = stub(details, 'updateProduct');
+      const transformedDetailsProduct = stub(CoreSelectors, 'transformedDetailsProduct').returns(product);
+      const state = { b : 2};
       details.flux = <any>{ on };
-      details.select = spy(() => ({ product }));
+      details.select = spy((f) => (f(state)));
 
       details.init();
 
+      expect(transformedDetailsProduct).to.be.calledWithExactly(state);
       expect(updateProduct).to.be.calledWithExactly(product);
     });
   });
@@ -49,14 +49,11 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
   describe('updateProduct()', () => {
     it('should update product', () => {
       const product: any = { a: 'b' };
-      const transformed = { c: 'd' };
       const update = details.update = spy();
-      const transform = stub(ProductTransformer, 'transform').returns(transformed);
 
       details.updateProduct(product);
 
-      expect(update).to.be.calledWith({ product: transformed });
-      expect(transform).to.be.calledWith(product, STRUCTURE);
+      expect(update).to.be.calledWith({ product });
     });
 
     it('should update product to be empty', () => {

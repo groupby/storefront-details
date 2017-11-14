@@ -1,4 +1,4 @@
-import { alias, configurable, tag, CoreSelectors, Events, Store, Structure, Tag } from '@storefront/core';
+import { alias, configurable, tag, CoreSelectors, Events, Store, Tag } from '@storefront/core';
 
 @configurable
 @alias('details')
