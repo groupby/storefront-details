@@ -23,37 +23,37 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
   });
 
   describe('init()', () => {
-    it('should listen for DETAILS_PRODUCT_UPDATED', () => {
+    it('should listen for DETAILS_UPDATED', () => {
       const on = spy();
       details.flux = <any>{ on };
       details.select = spy();
 
       details.init();
 
-      expect(on.calledWith(Events.DETAILS_PRODUCT_UPDATED, details.updateProduct));
+      expect(on.calledWith(Events.DETAILS_UPDATED, details.updateDetails));
     });
 
-    it('should call details selector and call updateProduct with details.product', () => {
+    it('should call details selector and call updateDetails with details.product', () => {
       const on = spy();
-      const product = { a: 1 };
-      const updateProduct = stub(details, 'updateProduct');
+      const data = { a: 1 };
+      const updateDetails = stub(details, 'updateDetails');
       details.flux = <any>{ on };
-      details.select = spy(() => ({ product }));
+      details.select = spy(() => ({ data }));
 
       details.init();
 
-      expect(updateProduct).to.be.calledWithExactly(product);
+      expect(updateDetails).to.be.calledWithExactly(data);
     });
   });
 
-  describe('updateProduct()', () => {
+  describe('updateDetails()', () => {
     it('should update product', () => {
       const product: any = { a: 'b' };
       const transformed = { c: 'd' };
       const update = details.update = spy();
       const transform = stub(ProductTransformer, 'transform').returns(transformed);
 
-      details.updateProduct(product);
+      details.updateDetails(product);
 
       expect(update).to.be.calledWith({ product: transformed });
       expect(transform).to.be.calledWith(product, STRUCTURE);
@@ -64,7 +64,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
       const update = details.update = spy();
       stub(ProductTransformer, 'transform').callsFake(() => expect.fail());
 
-      details.updateProduct(undefined);
+      details.updateDetails(undefined);
 
       expect(update).to.be.calledWith({ product: { data: {}, variants: [{}] } });
     });
