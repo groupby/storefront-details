@@ -30,7 +30,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
 
       details.init();
 
-      expect(on.calledWith(Events.DETAILS_UPDATED, details.updateDetails));
+      expect(on).to.be.calledWithExactly(Events.DETAILS_UPDATED, details.updateDetails);
     });
 
     it('should call details selector and call updateDetails with details.product', () => {
@@ -55,8 +55,8 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
 
       details.updateDetails(product);
 
-      expect(update).to.be.calledWith({ product: transformed });
-      expect(transform).to.be.calledWith(product, STRUCTURE);
+      expect(update).to.be.calledWithExactly({ product: transformed });
+      expect(transform).to.be.calledWithExactly(product, STRUCTURE);
     });
 
     it('should update product to be empty', () => {
@@ -66,7 +66,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
 
       details.updateDetails(undefined);
 
-      expect(update).to.be.calledWith({ product: { data: {}, variants: [{}] } });
+      expect(update).to.be.calledWithExactly({ product: { data: {}, variants: [{}] } });
     });
   });
 });
