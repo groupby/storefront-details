@@ -30,7 +30,7 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
 
       details.init();
 
-      expect(on.calledWith(Events.DETAILS_UPDATED, details.updateDetails));
+      expect(on).to.be.calledWith(Events.DETAILS_UPDATED, details.updateDetails);
     });
 
     it('should call details selector and call updateDetails with details.product', () => {
