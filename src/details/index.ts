@@ -24,6 +24,7 @@ class Details {
       this.update({ product: { data: {}, variants: [{}] } });
     }
   }
+
 }
 
 interface Details extends Tag { }
