@@ -11,22 +11,12 @@ class Details {
   structure: Structure = this.config.structure;
   product: Store.Product;
 
-  constructor() {
-    const cart = this.select(Selectors.cart);
-    this.state = { ...this.state, cartContent: cart.content.items };
-  }
-
   init() {
     const details = this.select(Selectors.details);
     if (details && details.data) {
       this.updateDetails(details.data);
     }
     this.flux.on(Events.DETAILS_UPDATED, this.updateDetails);
-  }
-
-  onUpdate() {
-    console.log('dfa', this.state.cartContent)
-
   }
 
   updateDetails = (product: Store.Product) => {
