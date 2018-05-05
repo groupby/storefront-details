@@ -14,7 +14,7 @@ class Details {
     if (details && details.data) {
       this.updateDetails(details.data);
     }
-    this.flux.on(Events.DETAILS_UPDATED, this.updateDetails);
+    this.subscribe(Events.DETAILS_UPDATED, this.updateDetails);
   }
 
   updateDetails = (product: Store.Product) => {

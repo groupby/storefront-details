@@ -24,20 +24,18 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldHaveAlias
 
   describe('init()', () => {
     it('should listen for DETAILS_UPDATED', () => {
-      const on = spy();
-      details.flux = <any>{ on };
+      const subscribe = details.subscribe = spy();
       details.select = spy();
 
       details.init();
 
-      expect(on).to.be.calledWithExactly(Events.DETAILS_UPDATED, details.updateDetails);
+      expect(subscribe).to.be.calledWithExactly(Events.DETAILS_UPDATED, details.updateDetails);
     });
 
     it('should call details selector and call updateDetails with details.product', () => {
-      const on = spy();
       const data = { a: 1 };
       const updateDetails = stub(details, 'updateDetails');
-      details.flux = <any>{ on };
+      details.subscribe = () => null;
       details.select = spy(() => ({ data }));
 
       details.init();
