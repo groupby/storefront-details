@@ -1,31 +1,35 @@
-import { alias, configurable, tag, Events,
-         ProductTransformer, Selectors, Store, Structure, Tag } from '@storefront/core';
+import * as Core from '@storefront/core';
 
-@configurable
-@alias('details')
-@tag('gb-details', require('./index.html'))
+@Core.configurable
+@Core.provide('details')
+@Core.tag('gb-details', require('./index.html'))
 class Details {
-
-  structure: Structure = this.config.structure;
-  product: Store.Product;
-
   init() {
-    const details = this.select(Selectors.details);
+    this.subscribe(Core.Events.DETAILS_UPDATED, this.updateDetails);
+  }
+
+  onBeforeMount() {
+    const details = this.select(Core.Selectors.details);
     if (details && details.data) {
       this.updateDetails(details.data);
     }
-    this.subscribe(Events.DETAILS_UPDATED, this.updateDetails);
   }
 
-  updateDetails = (product: Store.Product) => {
+  updateDetails = (product: Core.Store.Product) => {
     if (product) {
-      this.update({ product: ProductTransformer.transform(product, this.structure) });
+      this.set({ product: Core.ProductTransformer.transform(product, this.config.structure) });
     } else {
-      this.update({ product: { data: {}, variants: [{}] } });
+      this.set({ product: { data: {}, variants: [{}] } });
     }
   }
 }
 
-interface Details extends Tag { }
+interface Details extends Core.Tag<{}, Details.State> {}
+
+namespace Details {
+  export interface State {
+    product: { data: object; variants: object[] };
+  }
+}
 
 export default Details;
