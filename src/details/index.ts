@@ -5,14 +5,11 @@ import * as Core from '@storefront/core';
 @Core.tag('gb-details', require('./index.html'))
 class Details {
   init() {
-    this.subscribe(Core.Events.DETAILS_UPDATED, this.updateDetails);
-  }
-
-  onBeforeMount() {
     const details = this.select(Core.Selectors.details);
     if (details && details.data) {
       this.updateDetails(details.data);
     }
+    this.subscribe(Core.Events.DETAILS_UPDATED, this.updateDetails);
   }
 
   updateDetails = (product: Core.Store.Product) => {
