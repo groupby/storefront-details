@@ -13,23 +13,15 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldProvideAl
   itShouldProvideAlias(Details, 'details');
 
   describe('init()', () => {
-    it('should listen for DETAILS_UPDATED', () => {
+    it('should listen for DETAILS_UPDATED and set up initial state', () => {
       const subscribe = (details.subscribe = spy());
-
-      details.init();
-
-      expect(subscribe).to.be.calledWithExactly(Events.DETAILS_UPDATED, details.updateDetails);
-    });
-  });
-
-  describe('onBeforeMount()', () => {
-    it('should call details selector and call updateDetails with details.product', () => {
       const data = { a: 1 };
       const updateDetails = stub(details, 'updateDetails');
       details.select = spy(() => ({ data }));
 
-      details.onBeforeMount();
+      details.init();
 
+      expect(subscribe).to.be.calledWithExactly(Events.DETAILS_UPDATED, updateDetails);
       expect(updateDetails).to.be.calledWithExactly(data);
     });
   });
