@@ -32,4 +32,5 @@ sed -i'' "$(printf 's/\[Unreleased\].*/[%s] - %s/' "$new_version" "$(date +%F)")
 
 msg="Release version ${new_version}"
 git commit -m "$msg" package.json CHANGELOG.md
-git tag -a "v${new_version}" -m "$msg"
+sed -n '/## \[/,//'p CHANGELOG.md | sed -e '$d' -e 's/^##* *//' -e $'1a\\\n\\\n' |
+git tag -a "v${new_version}" -F -
