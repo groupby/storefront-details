@@ -46,4 +46,4 @@ sed -n '/## \[/,//p' CHANGELOG.md | sed -e '$d' -e 's/^##* *//' -e $'1a\\\n\\\n'
 git tag -a "$new_version" -F -
 
 # Push
-git push origin HEAD "$new_version"
+git push --no-verify origin HEAD "$new_version"
