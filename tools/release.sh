@@ -12,8 +12,18 @@ cd "${BASH_SOURCE%/*}/.."
 npm run docs
 git commit -m "Generate docs" ./docs
 
-release_type="$(sed -n '/## \[Unreleased\]\s*\[\(.*\)\]/ s//\1/p' CHANGELOG.md)"
-[[ -n "$release_type" ]] || die "Could not detect potential release."
+release_type="$(sed -n '/## \[Unreleased\] \[\(.*\)\]/ s//\1/p' CHANGELOG.md)"
+case "$release_type" in
+  major | minor | patch | premajor | preminor | prepatch | prerelease | from-git)
+    : # valid; do nothing
+    ;;
+  '')
+    die "Could not detect potential release in the CHANGELOG."
+    ;;
+  *)
+    die "Unsupported release type: ${release_type}"
+    ;;
+esac
 
 npm version "$release_type" --no-git-tag-version
 
