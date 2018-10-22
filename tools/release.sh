@@ -31,5 +31,5 @@ new_version="$(npm view . version)"
 sed -i'' "$(printf 's/\[Unreleased\].*/[%s] - %s/' "$new_version" "$(date +%F)")" CHANGELOG.md
 
 msg="Release version ${new_version}"
-git commit -m "$msg" .
+git commit -m "$msg" package.json CHANGELOG.md
 git tag -a "v${new_version}" -m "$msg"
