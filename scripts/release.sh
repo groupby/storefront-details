@@ -38,8 +38,7 @@ q
 EOF
 
 # Commit changes
-msg="Release version ${new_version}"
-git commit -m "$msg" package.json CHANGELOG.md
+git commit -m "Release version ${new_version}" package.json CHANGELOG.md
 
 # Tag with version
 sed -n '/## \[/,//p' CHANGELOG.md | sed -e '$d' -e 's/^##* *//' -e $'1a\\\n\\\n' |
