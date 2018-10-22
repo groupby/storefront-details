@@ -25,10 +25,13 @@ case "$release_type" in
     ;;
 esac
 
-npm version "$release_type" --no-git-tag-version
+new_version="$(npm version "$release_type" --no-git-tag-version)"
 
-new_version="$(npm view . version)"
-sed -i'' "$(printf 's/\[Unreleased\].*/[%s] - %s/' "$new_version" "$(date +%F)")" CHANGELOG.md
+ed CHANGELOG.md <<EOF
+/\[Unreleased\].*/ s//[${new_version}] - $(date +%F)/
+w
+q
+EOF
 
 msg="Release version ${new_version}"
 git commit -m "$msg" package.json CHANGELOG.md
