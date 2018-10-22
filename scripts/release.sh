@@ -11,7 +11,7 @@ cd "${BASH_SOURCE%/*}/.."
 
 # Generate docs
 npm run docs
-git commit -m "Generate docs" ./docs
+git commit -m "Generate docs" ${CI:+'-m' "[ci skip]"} ./docs
 
 # Determine release type
 release_type="$(sed -n '/## \[Unreleased\] \[\(.*\)\]/ s//\1/p' CHANGELOG.md)"
