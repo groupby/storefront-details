@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
+die() {
+  echo "ERROR:" "$@" >&2
+  exit 1
+}
+
 cd "${BASH_SOURCE%/*}/.."
 
 npm run docs
 git commit -m "Generate docs" ./docs
 
-release_type="$(sed -n '/## \[Unreleased\]/ s/.*\[\(.*\)\]/\1/p' CHANGELOG.md)"
+release_type="$(sed -n '/## \[Unreleased\]\s*\[\(.*\)\]/ s//\1/p' CHANGELOG.md)"
+[[ -n "$release_type" ]] || die "Could not detect potential release."
 
 npm version "$release_type" --no-git-tag-version
 new_version="$(sed -n '/"version"/ s/.*"\(.*\)",\{0,1\}/\1/p' package.json)"
