@@ -36,6 +36,6 @@ EOF
 msg="Release version ${new_version}"
 git commit -m "$msg" package.json CHANGELOG.md
 tag_name="v${new_version}"
-sed -n '/## \[/,//'p CHANGELOG.md | sed -e '$d' -e 's/^##* *//' -e $'1a\\\n\\\n' |
+sed -n '/## \[/,//p' CHANGELOG.md | sed -e '$d' -e 's/^##* *//' -e $'1a\\\n\\\n' |
 git tag -a "$tag_name" -F -
 git push origin HEAD "$tag_name"
