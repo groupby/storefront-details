@@ -9,9 +9,11 @@ die() {
 
 cd "${BASH_SOURCE%/*}/.."
 
+# Generate docs
 npm run docs
 git commit -m "Generate docs" ./docs
 
+# Determine release type
 release_type="$(sed -n '/## \[Unreleased\] \[\(.*\)\]/ s//\1/p' CHANGELOG.md)"
 case "$release_type" in
   major | minor | patch | premajor | preminor | prepatch | prerelease | from-git)
@@ -25,17 +27,23 @@ case "$release_type" in
     ;;
 esac
 
+# Bump package.json
 new_version="$(npm version "$release_type" --no-git-tag-version)"
 
+# Bump CHANGELOG
 ed CHANGELOG.md <<EOF
 /\[Unreleased\].*/ s//[${new_version#v}] - $(date +%F)/
 w
 q
 EOF
 
+# Commit changes
 msg="Release version ${new_version}"
 git commit -m "$msg" package.json CHANGELOG.md
-tag_name="${new_version}"
+
+# Tag with version
 sed -n '/## \[/,//p' CHANGELOG.md | sed -e '$d' -e 's/^##* *//' -e $'1a\\\n\\\n' |
-git tag -a "$tag_name" -F -
-git push origin HEAD "$tag_name"
+git tag -a "$new_version" -F -
+
+# Push
+git push origin HEAD "$new_version"
