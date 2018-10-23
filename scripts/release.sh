@@ -32,6 +32,7 @@ new_version="$(npm version "$release_type" --no-git-tag-version)"
 
 # Bump CHANGELOG
 ed CHANGELOG.md <<EOF
+H
 /\[Unreleased\].*/ s//[${new_version#v}] - $(date +%F)/
 w
 q
