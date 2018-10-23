@@ -32,5 +32,6 @@ tries_left=30
 
 until npm view ".@${version}" | grep -q .; do
   ((--tries_left)) || die "Published version validation timed out."
+  echo "Version ${version} not yet on npm. Waiting 10 seconds..."
   sleep 10
 done
