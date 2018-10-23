@@ -7,7 +7,30 @@ die() {
   exit 1
 }
 
+print_usage() {
+  cat <<EOF
+Usage: ${0##*/}
+       ${0##*/} -h
+Creates a release.
+
+This performs the following steps:
+1. Generates the documentation
+2. Bumps the version number in package.json
+3. Finalizes the release in CHANGELOG.md
+4. Creates a git tag
+EOF
+}
+
 cd "${BASH_SOURCE%/*}/.."
+
+while getopts "h" opt; do
+  case "$opt" in
+    h)
+      print_usage
+      exit 0
+      ;;
+  esac
+done
 
 # Generate docs
 npm run docs
