@@ -12,14 +12,16 @@ die() {
 cd "${BASH_SOURCE%/*}/.."
 
 while getopts ":t:" opt; do
-  case $opt in
+  case "$opt" in
     t)
-      tag=$OPTARG
+      tag="$OPTARG"
       ;;
     \?)
-      die "Invalid option: -$OPTARG" 
+      die "Invalid option: -${OPTARG}"
       ;;
   esac
 done
+
+shift $((OPTIND - 1))
 
 npm publish --tag "$tag"
