@@ -62,7 +62,11 @@ jobs:
           key: build_cache-{{ .Branch }}
       - run:
           name: Release
-          command: ./scripts/release.sh
+          command: |
+            git config --global user.email "ops@groupbyinc.com"
+            git config --global user.name "GroupBy Ops"
+            git config --global push.default simple
+            ./scripts/release.sh
   publish:
     docker:
       - image: kkarczmarczyk/node-yarn
@@ -74,7 +78,11 @@ jobs:
           key: build_cache-{{ .Branch }}
       - run:
           name: Publish
-          command: ./scripts/publish.sh -t tmp
+          command: |
+            git config --global user.email "ops@groupbyinc.com"
+            git config --global user.name "GroupBy Ops"
+            git config --global push.default simple
+            ./scripts/publish.sh -t tmp
 
 workflows:
   version: 2
