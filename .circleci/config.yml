@@ -97,7 +97,7 @@ jobs:
             git config --global push.default simple
       - run:
           name: Publish
-          command: ./scripts/publish.sh -t tmp
+          command: ./scripts/publish.sh
 
 workflows:
   version: 2
@@ -113,15 +113,11 @@ workflows:
             - unit_test
           filters:
             branches:
-              only:
-                - master
-                - SF-1061
+              only: master
       - publish:
           context: org-global
           requires:
             - release
           filters:
             branches:
-              only:
-                - master
-                - SF-1061
+              only: master
