@@ -61,13 +61,14 @@ jobs:
       - restore_cache:
           key: build_cache-{{ .Branch }}
       - run:
-          name: Release
+          name: Setup Git user
           command: |
-            apt install -y ed
             git config --global user.email "ops@groupbyinc.com"
             git config --global user.name "GroupBy Ops"
             git config --global push.default simple
-            ./scripts/release.sh
+      - run:
+          name: Release
+          command: ./scripts/release.sh
   publish:
     docker:
       - image: kkarczmarczyk/node-yarn
@@ -78,12 +79,17 @@ jobs:
       - restore_cache:
           key: build_cache-{{ .Branch }}
       - run:
-          name: Publish
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - run:
+          name: Setup Git user
           command: |
             git config --global user.email "ops@groupbyinc.com"
             git config --global user.name "GroupBy Ops"
             git config --global push.default simple
-            ./scripts/publish.sh -t tmp
+      - run:
+          name: Publish
+          command: ./scripts/publish.sh -t tmp
 
 workflows:
   version: 2
