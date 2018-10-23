@@ -67,6 +67,9 @@ jobs:
             git config --global user.name "GroupBy Ops"
             git config --global push.default simple
       - run:
+          name: Install dependencies
+          command: apt install -y ed
+      - run:
           name: Release
           command: ./scripts/release.sh
   publish:
