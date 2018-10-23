@@ -74,7 +74,7 @@ jobs:
           key: build_cache-{{ .Branch }}
       - run:
           name: Publish
-          command: ./scripts/publish.sh
+          command: ./scripts/publish.sh -t tmp
 
 workflows:
   version: 2
@@ -90,11 +90,15 @@ workflows:
             - unit_test
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - SF-1061
       - publish:
           context: org-global
           requires:
             - release
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - SF-1061
