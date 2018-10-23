@@ -63,6 +63,7 @@ jobs:
       - run:
           name: Release
           command: |
+            apt install -y ed
             git config --global user.email "ops@groupbyinc.com"
             git config --global user.name "GroupBy Ops"
             git config --global push.default simple
