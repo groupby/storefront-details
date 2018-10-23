@@ -72,11 +72,16 @@ jobs:
       - run:
           name: Release
           command: ./scripts/release.sh
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - project
   publish:
     docker:
       - image: kkarczmarczyk/node-yarn
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/
       - restore_cache:
           <<: *node_cache
       - restore_cache:
