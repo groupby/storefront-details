@@ -54,7 +54,7 @@ tries_left=30
 
 info "Checking npm for published version..."
 until npm view ".@${version}" | grep -q .; do
-  ((--tries_left)) || die "Published version validation timed out."
+  ((--tries_left)) || die "Published version validation timed out.  (╯°□°)╯︵ ┻━┻"
   info "Version ${version} not yet on npm. Waiting 10 seconds (${tries_left} tries left)..."
   sleep 10
 done
