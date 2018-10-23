@@ -25,3 +25,12 @@ done
 shift $((OPTIND - 1))
 
 npm publish --tag "$tag"
+
+version="$(node -p "require('./package.json').version")"
+
+tries_left=30
+
+until npm view ".@${version}" | grep -q .; do
+  ((--tries_left)) || die "Published version validation timed out."
+  sleep 10
+done
