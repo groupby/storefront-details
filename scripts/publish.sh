@@ -20,6 +20,10 @@ EOF
   sed -n '/^[[:space:]]*###/ s//   /p' "$BASH_SOURCE"
 }
 
+info() {
+  echo "===>" "$@"
+}
+
 cd "${BASH_SOURCE%/*}/.."
 
 while getopts ":t:h" opt; do
@@ -41,14 +45,18 @@ done
 
 shift $((OPTIND - 1))
 
-npm publish --tag "$tag"
-
 version="$(node -p "require('./package.json').version")"
+
+info "Publishing version ${version} to npm tag ${tag}..."
+npm publish --tag "$tag"
 
 tries_left=30
 
+info "Checking npm for published version..."
 until npm view ".@${version}" | grep -q .; do
   ((--tries_left)) || die "Published version validation timed out."
-  echo "Version ${version} not yet on npm. Waiting 10 seconds..."
+  info "Version ${version} not yet on npm. Waiting 10 seconds (${tries_left} tries left)..."
   sleep 10
 done
+
+info "Done."
