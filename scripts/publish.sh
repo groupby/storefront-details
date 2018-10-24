@@ -13,7 +13,7 @@ print_usage() {
   cat <<EOF
 Usage: ${0##*/} [OPTIONS]
        ${0##*/} -h
-Publishes the current package to npm.
+Publishes the current package to npm based on the version in package.json.
 
 OPTIONS
 EOF
