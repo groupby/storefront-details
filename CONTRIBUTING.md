@@ -24,6 +24,8 @@ For every change, add an "Unreleased" entry to the top of the changelog in the f
 - <Describe security fixes>
 ```
 
+The release type corresponds to the arugement to `npm version`. 
+
 Supported release types:
 - `major`
 - `minor`
