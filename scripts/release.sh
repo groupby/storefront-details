@@ -3,8 +3,22 @@
 set -eo pipefail
 
 die() {
+  local exit_code=1
+  local OPTIND=1
+  local opt
+
+  while getopts "c:" opt; do
+    case "$opt" in
+      c)
+        exit_code="$OPTARG"
+        ;;
+    esac
+  done
+
+  shift $((OPTIND - 1))
+
   echo "ERROR:" "$@" >&2
-  exit 1
+  exit $exit_code
 }
 
 info() {
@@ -22,6 +36,13 @@ This performs the following steps:
 2. Bumps the version number in package.json
 3. Finalizes the release in CHANGELOG.md
 4. Creates a git tag
+
+EXIT CODES:
+- 0: Success
+- 1: General error
+- 2: Usage error
+- 3: No release detected
+- 4: Unsupported release type
 EOF
 }
 
@@ -36,6 +57,8 @@ while getopts "h" opt; do
   esac
 done
 
+shift $((OPTIND - 1))
+
 info "Generating docs..."
 npm run docs
 git commit -m "Generate docs" ${CI:+'-m' "[ci skip]"} ./docs
@@ -47,10 +70,10 @@ case "$release_type" in
     : # valid; do nothing
     ;;
   '')
-    die "Could not detect potential release in the CHANGELOG."
+    die -c 3 "Could not detect potential release in the CHANGELOG."
     ;;
   *)
-    die "Unsupported release type: ${release_type}"
+    die -c 4 "Unsupported release type: ${release_type}"
     ;;
 esac
 
