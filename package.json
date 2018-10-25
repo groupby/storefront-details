@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "prepare": "install-self-peers -- --ignore-scripts",
-    "build": "npm start build && npm run esnext",
+    "build": "tsc && tsc -p tsconfig.esnext.json",
     "start": "start-runner -p re-start/presets/typescript",
     "esnext": "npm start build -- -- --compileOpts.configFile tsconfig.esnext.json --outDir esnext",
     "dev": "npm start dev",
