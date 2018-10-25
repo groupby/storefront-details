@@ -41,7 +41,10 @@ jobs:
           <<: *node_cache
       - run:
           name: Test
-          command: yarn start ci
+          command: yarn test
+      - run:
+          name: Upload coverage
+          command: npx codecov -f coverage/lcov.info
   release:
     docker:
       - image: kkarczmarczyk/node-yarn
