@@ -29,7 +29,7 @@
     "dev": "npm start dev",
     "test": "nyc mocha --recursive --require ts-node/register --require source-map-support/register './test/**/*.ts'",
     "tdd": "npm start tdd",
-    "prepush": "npm start prepush",
+    "prepush": "npm test",
     "prepublishOnly": "npm run build",
     "docs": "typedoc src/**/*.ts",
     "docs:json": "npm run docs -- --json component.docs.json"
