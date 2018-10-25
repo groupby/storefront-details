@@ -5,6 +5,7 @@ bundle/
 coverage/
 typings/
 .scratch/
+.nyc_output
 src/**/*.js
 src/**/*.d.ts
 test/**/*.js
