@@ -16,7 +16,7 @@ jobs:
           <<: *node_cache
       - run:
           name: Dependencies
-          command: yarn global add greenkeeper-lockfile@1
+          command: apt install -y rsync
       - run:
           name: Install
           command: yarn
