@@ -21,17 +21,8 @@ jobs:
           name: Install
           command: yarn
       - run:
-          name: Update Lockfile
-          command: greenkeeper-lockfile-update
-      - run:
           name: Build
           command: yarn build
-      - run:
-          name: Upload Lockfile
-          command: greenkeeper-lockfile-upload
-      - run:
-          name: Revert Lockfile
-          command: git checkout yarn.lock
       - save_cache:
           <<: *node_cache
           paths:
