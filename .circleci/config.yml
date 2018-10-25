@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Upload coverage
           command: |
-            [[ -r coverage/lcov.info ]] && npx codecv -f coverage/lcov.info
+            [[ -r coverage/lcov.info ]] && npx codecov -f coverage/lcov.info
   release:
     docker:
       - image: kkarczmarczyk/node-yarn
