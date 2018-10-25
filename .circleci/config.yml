@@ -44,7 +44,7 @@ jobs:
           command: yarn test
       - run:
           name: Upload coverage
-          command: npx codecov -f coverage/lcov.info
+          command: npx codecov
   release:
     docker:
       - image: kkarczmarczyk/node-yarn
