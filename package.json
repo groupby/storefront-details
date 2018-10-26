@@ -26,10 +26,10 @@
     "prepare": "install-self-peers -- --ignore-scripts",
     "build": "./scripts/build.sh",
     "start": "start-runner -p re-start/presets/typescript",
-    "dev": "npm start dev",
+    "dev": "nodemon --watch src --exec npm run build",
     "test": "nyc mocha --recursive --require ts-node/register --require source-map-support/register './test/**/*.ts'",
     "uploadCoverage": "npm run test && codecov",
-    "tdd": "npm start tdd",
+    "tdd": "nodemon --watch src --watch test --exec npm run test",
     "prepush": "npm test",
     "prepublishOnly": "npm run build",
     "docs": "typedoc src/**/*.ts",
@@ -67,6 +67,9 @@
     ],
     "all": true
   },
+  "nodemonConfig": {
+    "ext": "ts,json,html,css"
+  },
   "devDependencies": {
     "@storefront/testing": "1.1.0",
     "@team-griffin/install-self-peers": "^1.1.1",
@@ -79,6 +82,7 @@
     "husky": "^0.14.3",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
+    "nodemon": "^1.18.5",
     "nyc": "^13.1.0",
     "prettier": "^1.12.1",
     "re-start": "^1.14.8",
