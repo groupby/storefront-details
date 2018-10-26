@@ -41,7 +41,6 @@ suite('Details', ({ expect, spy, stub, itShouldBeConfigurable, itShouldProvideAl
     });
 
     it('should update product to be empty', () => {
-      const transformed = { c: 'd' };
       const set = (details.set = spy());
       stub(ProductTransformer, 'transform').callsFake(() => expect.fail());
 
