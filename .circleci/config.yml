@@ -16,22 +16,13 @@ jobs:
           <<: *node_cache
       - run:
           name: Dependencies
-          command: yarn global add greenkeeper-lockfile@1
+          command: apt install -y rsync
       - run:
           name: Install
           command: yarn
       - run:
-          name: Update Lockfile
-          command: greenkeeper-lockfile-update
-      - run:
           name: Build
           command: yarn build
-      - run:
-          name: Upload Lockfile
-          command: greenkeeper-lockfile-upload
-      - run:
-          name: Revert Lockfile
-          command: git checkout yarn.lock
       - save_cache:
           <<: *node_cache
           paths:
@@ -50,7 +41,10 @@ jobs:
           <<: *node_cache
       - run:
           name: Test
-          command: yarn start ci
+          command: yarn test
+      - run:
+          name: Upload coverage
+          command: yarn uploadCoverage
   release:
     docker:
       - image: kkarczmarczyk/node-yarn

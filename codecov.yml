@@ -1,2 +1,2 @@
 fixes:
-  - 'root/storefront-details/src/::src/'
+  - '*/src/::src/'
