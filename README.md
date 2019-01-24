@@ -1,4 +1,10 @@
-# StoreFront details
+# [MOVED] StoreFront details
+
+* * *
+
+**This repository has been moved to <https://github.com/groupby/storefront>.**
+
+* * *
 
 StoreFront `<gb-details>` component
 
